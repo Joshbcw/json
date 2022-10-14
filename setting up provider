@@ -1,0 +1,10 @@
+const HTTP_PROVIDER_URL = process.env.ARKHIA_JSON_RPC_RELAY;
+
+const getWeb3Provider = () => {
+    return new Web3(new Web3.providers.HttpProvider(HTTP_PROVIDER_URL), {
+        keepalive: true,
+        headers: [{ name: 'Access-Control-Allow-Origin', value: '*' }],
+        withCredentials: false,
+        timeout: 30 * 1000,
+    })
+}
