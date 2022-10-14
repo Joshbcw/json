@@ -1,0 +1,27 @@
+const getLiveness = async () => {
+    web3Provider.eth.net.isListening()
+        .then(() => console.log(`-> web3 provider is connected`))
+        .catch(e => console.log('error: ' + e));
+}
+
+const getChainID = async () => {
+    web3Provider.eth.net.getId()
+        .then((res) => console.log(`-> get ID`, res))
+        .catch(e => console.log('error: ' + e));
+}
+
+const getBalance = async (_addr) => {
+    web3Provider.eth.getBalance(_addr)
+      .then((res)=> console.log(`-> Get Bal ${_addr} : ${res}`))
+      .catch(e => console.log(`-> Get Bal Get Bal Error: ${e}`));
+}
+
+const getGas = async () => {
+    const testStruct = {
+        to: "0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe",
+        data: "0xc6888fa10000000000000000000000000000000000000000000000000000000000000003"
+    }
+
+    web3Provider.eth.estimateGas(testStruct)
+        .then((res) => console.log(`-> get Gas`, res))
+        .catch(e => console.log('error: ' + e));
